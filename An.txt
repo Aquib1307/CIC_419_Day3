@@ -1,0 +1,56 @@
+read -p "Enter a number :" n;
+
+ones=$(($n%10))
+ten=$((($n/10)%10))
+hun=$((($n/100)%10))
+thou=$(($n/1000))
+
+if [ $ones -ne 0 ] ; then
+    echo "Units :" $ones;
+
+elif [ $ten -ne 0 ] ; then
+    echo "Tens : " $ten;
+
+elif [ $hun -ne 0 ] ; then
+    echo "Hundreds : " $hun;
+
+elif [ $thou -ne 0 ] ; then
+    echo "Thousands : " $thou;
+else
+    echo "Please enter 4 digit number:"
+fi
+
+if [ $ones -ne 0 && $ten -ne 0 && $hun -ne 0 && $thou -ne 0];
+then
+  echo "Units :" $ones;
+  echo "Tens : " $ten;
+  echo "Hundreds : " $hun;
+  echo "Thousands : " $thou;
+
+else 
+
+if [ ones=$(($n%10)) ] ; then
+    echo "Units :" $ones;
+
+elif [ ten=$((($n/10)%10)) ] ; then
+    echo "Tens : " $ten;
+
+elif [ hun=$((($n/100)%10)) ] ; then
+    echo "Hundreds : " $hun;
+
+elif [ thou=$(($n/1000)) ] ; then
+    echo "Thousands : " $thou;
+else
+    echo "Please enter 4 digit number:"
+fi
+
+Dear Sir,
+
+The offer for your requirement is attached herewith.
+
+We look forward to receiving your valuable order.
+
+Looking forward to hearing from you on the next steps.
+
+Best Regards,
+Mohammed Aquib

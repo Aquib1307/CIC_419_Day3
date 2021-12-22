@@ -85,6 +85,59 @@ b) cat data.csv | awk '{sum+=$7} END {print sum}'
 
 iii a & b) cat data.csv | awk '$5>=7000 && $5<=10000 {print $3 " " $5}'
 
-
 iv a & b) cat data.csv | awk '{sum+=$4} END {print sum/NR}'
 
+9. Print last 4 frequently access urls count in sorted order from access.log
+i) cat access.log
+ii) grep -oP '^[^"]+"[^"\\]*(?:\\.[^"\\]*)*"[^"]+"\K[^"\\]*(?:\\.[^"\\]*)*(?=")' access.log
+iii) sort access.log | uniq -c & sort access.log | uniq -c | wc -l
+iv) grep -oP '(?<=http://).*(?=;)' access.log | sort -u | head -4
+
+10. Print list of last 4 frequently access unique url at particular hours from access.log
+i) cat access.log | awk '{print $7}' | sort -n | uniq -c
+ii) sort access.log | uniq -c & sort access.log | uniq -c | wc -l
+iii) grep -oP '(?<=http://).*(?=;)' access.log | sort -u | head -4
+
+11. Print list of web response code count in the unique sorted order at specific hours 
+i) cat access.log | cut -d '"' -f3 | cut -d ' ' -f2 | sort | uniq -c | sort -rn
+ii) sort access.log | cut -d '"' -f3 | cut -d ' ' -f2 | sort | uniq -c | wc -l
+iii) awk -F ',' '{print $2}' access.log | sort | uniq -c | head -4
+
+12. Print list of last 10 unique sorted client IP from access.log
+i) cat access.* | awk '{ print $1 }' | sort | uniq -c | sort -n
+ii) awk '{ print $1 } ' access.log | sort | uniq | wc -l
+iii) cat access.* | awk '{ print $1 }' | sort | uniq -c | sort -n | head -4
+
+13. Find a word "system" from all log files in the folder /var/log and print number of occurrence more than 0 against each file 
+grep system access.log
+
+14. Set environment usersecret="dH34xJaa23" if its already not set
+i) if [ -z "$var" ]
+then
+      echo "\$var is empty"
+else
+      echo "\$var is NOT empty"
+fi
+
+ii) #!/bin/bash
+
+getent usersecret $1 > /dev/null 2&>1
+
+if [ $? -eq 0 ]; then
+    echo "yes the user exists"
+else
+    echo "No, the user does not exist"
+fi
+
+iii) export NAME=VALUE
+export HOME=usersecret
+echo $HOME
+
+15. Find the difference between original file & the updated file. Apply changes to the original file
+i) mkdir original
+   mkdir updated
+ii) cp original-file.sh original file
+    cp updated-file.sh updated file
+iii) diff -q original file/ updated file/
+iv) cp original file original-backup
+v)  diff -q original-backup/ updated file/
